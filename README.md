@@ -1,5 +1,5 @@
 # PluginInterface
-Public c# interface for creating new image/video plugins
+Public c# interface for creating new image/video plugins for Lyric Video Studio. More info coming up!!! See https://lyricvideo.studio
 
 # Instructions
 1. Clone this repository as submodule (for example)
