@@ -1,12 +1,12 @@
 ﻿using Newtonsoft.Json;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 
-
 namespace PluginBase
 {
     public static class JsonHelper
     {
-        public static List<string> Errors = new List<string>(); 
+        public static List<string> Errors = new List<string>();
+
         public static T DeserializeString<T>(string obj)
         {
             var output = JsonConvert.DeserializeObject<T>(obj, GetSettings());
@@ -14,7 +14,7 @@ namespace PluginBase
         }
 
         public static T Deserialize<T>(string path)
-        {            
+        {
             return DeserializeString<T>(File.ReadAllText(path));
         }
 
@@ -39,9 +39,9 @@ namespace PluginBase
 
         private static JsonSerializerSettings GetSettings()
         {
-            if(settings == null)
+            if (settings == null)
             {
-                settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto };
+                settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, NullValueHandling = NullValueHandling.Ignore };
 
                 settings.Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
