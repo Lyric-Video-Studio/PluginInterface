@@ -32,6 +32,12 @@
         public string[] SettingsLinks { get; }
 
         /// <summary>
+        /// Tells the app if multiple items of same track can be generated at the same time. App will pause for 2sec before calling next one, to avoid throttle limits to exceed
+        /// If plugin generates stuff on could, usually this should be set to true. In case of local generating, false might be required
+        /// </summary>
+        public bool AsynchronousGeneration { get; }
+
+        /// <summary>
         /// Initialized plugin so that it's ready for use. Return empty (or null) string if everything is ok, user is displayable message if not
         /// See also GeneralSettings function, object should match it. Should not make any connections outside in this function yet (preferred)
         /// </summary>
