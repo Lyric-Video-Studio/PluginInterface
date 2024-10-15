@@ -59,4 +59,13 @@
     public class IgnoreDynamicEdit : Attribute
     {
     }
+
+    /// <summary>
+    /// This attribute makes the property visible even if you define it as JsonIgnore. Purpose of this is to provide user some easier value for edit, 
+    /// where the setter actually modifies something else
+    /// </summary>
+    public class ForceShowOnDynamicEdit: Attribute
+    {
+
+    }
 }
