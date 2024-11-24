@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using static System.Runtime.InteropServices.JavaScript.JSType;
+﻿using System.Text.Json;
 
 namespace PluginBase
 {
@@ -9,7 +8,7 @@ namespace PluginBase
 
         public static T DeserializeString<T>(string obj)
         {
-            var output = JsonConvert.DeserializeObject<T>(obj, GetSettings());
+            var output = JsonSerializer.Deserialize<T>(obj, GetSettings());
             return output;
         }
 
@@ -20,13 +19,13 @@ namespace PluginBase
 
         public static string Serialize<T>(T obj)
         {
-            var output = JsonConvert.SerializeObject(obj, Formatting.Indented, GetSettings());
+            var output = JsonSerializer.Serialize(obj, GetSettings());
             return output;
         }
 
         public static void SerializeToPath<T>(T obj, string path)
         {
-            var output = JsonConvert.SerializeObject(obj, Formatting.Indented, GetSettings());
+            var output = JsonSerializer.Serialize(obj, GetSettings());
             File.WriteAllText(path, output);
         }
 
@@ -35,19 +34,19 @@ namespace PluginBase
             return DeserializeString<T>(Serialize(obj));
         }
 
-        private static JsonSerializerSettings settings;
+        private static JsonSerializerOptions settings;
 
-        private static JsonSerializerSettings GetSettings()
+        private static JsonSerializerOptions GetSettings()
         {
             if (settings == null)
             {
-                settings = new JsonSerializerSettings { TypeNameHandling = TypeNameHandling.Auto, NullValueHandling = NullValueHandling.Ignore };
+                settings = new JsonSerializerOptions();
 
-                settings.Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
+                /*settings.Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     Errors.Add(args.ErrorContext.Error.ToString());
                     args.ErrorContext.Handled = true;
-                };
+                };*/
             }
             return settings;
         }

@@ -1,4 +1,4 @@
-﻿using Microsoft.Maui.Storage;
+﻿using Meziantou.Framework.Win32;
 
 namespace PluginBase
 {
@@ -13,8 +13,10 @@ namespace PluginBase
                 // Will crash the app if this is called on project rendering, when copies of the project is made
                 return "";
             }
-            Task<string> task = Task.Run(async () => await SecureStorage.Default.GetAsync(key));
-            return task.Result;
+
+            /*Task<string> task = Task.Run(async () => await SecureStorage.Default.GetAsync(key));
+            return task.Result;*/
+            return CredentialManager.ReadCredential(key)?.Password;
         }
 
         public static void Set(string key, string value)
@@ -24,8 +26,9 @@ namespace PluginBase
                 // Will crash the app if this is called on project rendering, when copies of the project is made
                 return;
             }
-            Task task = Task.Run(async () => await SecureStorage.Default.SetAsync(key, value));
-            task.Wait();
+            CredentialManager.WriteCredential(key, "", value, CredentialPersistence.LocalMachine);
+            /*Task task = Task.Run(async () => await SecureStorage.Default.SetAsync(key, value));
+            task.Wait();*/
         }
     }
 }
