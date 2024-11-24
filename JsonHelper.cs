@@ -36,13 +36,12 @@ namespace PluginBase
 
         private static JsonSerializerOptions settings;
 
-        private static JsonSerializerOptions GetSettings()
+        public static JsonSerializerOptions GetSettings()
         {
             if (settings == null)
             {
-                settings = new JsonSerializerOptions();
-
-                /*settings.Error = delegate (object sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
+                settings = new JsonSerializerOptions() { WriteIndented = true };
+                /*settings.Error = delegate (object? sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     Errors.Add(args.ErrorContext.Error.ToString());
                     args.ErrorContext.Handled = true;
