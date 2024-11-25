@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace PluginBase
 {
@@ -40,7 +41,7 @@ namespace PluginBase
         {
             if (settings == null)
             {
-                settings = new JsonSerializerOptions() { WriteIndented = true };
+                settings = new JsonSerializerOptions() { WriteIndented = true, NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals };
                 /*settings.Error = delegate (object? sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     Errors.Add(args.ErrorContext.Error.ToString());

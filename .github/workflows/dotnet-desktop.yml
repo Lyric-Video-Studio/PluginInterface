@@ -83,7 +83,7 @@ jobs:
 
     # Restore the application to populate the obj folder with RuntimeIdentifiers
     - name: Publish
-      run: dotnet publish .\PluginBase.csproj -c Release /p:RuntimeIdentifierOverride=win-x86 -o publish\plugins
+      run: dotnet publish .\PluginBase.csproj -c Release -o publish\plugins
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     #- name: Upload build artifacts
