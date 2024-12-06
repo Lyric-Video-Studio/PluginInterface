@@ -92,5 +92,10 @@ namespace PluginBase
         /// Convert deserialized object to strongly typed. This is due to system.text.json restrictions. Your plugin is only one who knows the exact type
         /// </summary>
         public object ObjectToTrackPayload(JsonObject obj);
+
+        /// <summary>
+        /// Convert deserialized object to strongly typed. This is due to system.text.json restrictions. Your plugin is only one who knows the exact type
+        /// </summary>
+        public object ObjectToGeneralSettings(JsonObject obj);
     }
 }
