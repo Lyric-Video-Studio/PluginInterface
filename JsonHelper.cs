@@ -1,4 +1,5 @@
 ﻿using System.Text.Json;
+using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
 
 namespace PluginBase
@@ -41,7 +42,7 @@ namespace PluginBase
         {
             if (settings == null)
             {
-                settings = new JsonSerializerOptions() { WriteIndented = true, NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals };
+                settings = new JsonSerializerOptions() { WriteIndented = true, NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals, UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode };
                 /*settings.Error = delegate (object? sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     Errors.Add(args.ErrorContext.Error.ToString());
@@ -49,6 +50,11 @@ namespace PluginBase
                 };*/
             }
             return settings;
+        }
+
+        public static object ToExactType<T>(JsonObject obj)
+        {
+            return DeserializeString<T>(obj.ToJsonString());
         }
     }
 }

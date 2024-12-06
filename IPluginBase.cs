@@ -1,4 +1,6 @@
-﻿namespace PluginBase
+﻿using System.Text.Json.Nodes;
+
+namespace PluginBase
 {
     /// <summary>
     /// Base interface for plugins, provides common functions needed for all plugins. Any parameter editing is done on app ui OR with ui provided by the plugin. App ui finds editable properties dynamically, if built-in ui is used,
@@ -80,5 +82,15 @@
         /// Deserialize track payload preset, plugin knows it's correct type
         /// </summary>
         public object DeserializePayload(string fileName);
+
+        /// <summary>
+        /// Convert deserialized object to strongly typed. This is due to system.text.json restrictions. Your plugin is only one who knows the exact type
+        /// </summary>
+        public object ObjectToItemPayload(JsonObject obj);
+
+        /// <summary>
+        /// Convert deserialized object to strongly typed. This is due to system.text.json restrictions. Your plugin is only one who knows the exact type
+        /// </summary>
+        public object ObjectToTrackPayload(JsonObject obj);
     }
 }
