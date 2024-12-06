@@ -12,17 +12,17 @@ namespace PluginBase
         /// <summary>
         /// Return ContentView if you have custom ui for editing item. Return null to use dafault
         /// </summary>
-        ContentControl GetItemPayloadEditingUi(object payload);
+        UserControl GetItemPayloadEditingUi(object payload);
 
         /// <summary>
         /// Return ContentView if you have custom ui for editing track payload. Return null to use dafault
         /// </summary>
-        ContentControl GetTrackPayloadEditingUi(object payload);
+        UserControl GetTrackPayloadEditingUi(object payload);
 
         /// <summary>
         /// Return ContentView if you have custom ui for editing track override payload (of the item). Return null to use dafault
         /// </summary>
-        ContentControl GetTrackOverridePayloadEditingUi(object payload);
+        UserControl GetTrackOverridePayloadEditingUi(object payload);
 
         /// <summary>
         /// Clean up and dispose items
