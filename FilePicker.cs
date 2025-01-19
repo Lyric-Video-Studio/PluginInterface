@@ -1,5 +1,6 @@
 ﻿using Avalonia.Controls;
 using Avalonia.Platform.Storage;
+using Avalonia.Threading;
 
 namespace PluginBase
 {
@@ -40,7 +41,11 @@ namespace PluginBase
 
             pickOptions.AllowMultiple = pickMany;
 
-            var res = await _w.StorageProvider.OpenFilePickerAsync(pickOptions);
+            IReadOnlyList<IStorageFile> res = null;
+
+            await Dispatcher.UIThread.InvokeAsync(async () => {
+                res = await _w.StorageProvider.OpenFilePickerAsync(pickOptions);
+            });
 
             if (res.Any())
             {
