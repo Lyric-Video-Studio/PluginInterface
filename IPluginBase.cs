@@ -13,6 +13,12 @@ namespace PluginBase
     /// </summary>
     public interface IPluginBase
     {
+        public enum TrackType
+        {
+            Image,
+            Video
+        }
+
         /// <summary>
         /// Unique name of the plugin. Make sure it's unique enough, because plugin is loaded based of this name.
         /// </summary>
@@ -97,5 +103,10 @@ namespace PluginBase
         /// Convert deserialized object to strongly typed. This is due to system.text.json restrictions. Your plugin is only one who knows the exact type
         /// </summary>
         public object ObjectToGeneralSettings(JsonObject obj);
+
+        /// <summary>
+        /// Sets the type of track this plugin is instantiated to. Used when same plugin can handle multiple types
+        /// </summary>
+        public TrackType CurrentTrackType { get; set; }
     }
 }
