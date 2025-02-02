@@ -6,7 +6,7 @@ namespace PluginBase
 {
     public class FilePicker
     {
-        private static Window _w;
+        private static IStorageProvider _w;
 
         public struct FilePickRes
         {
@@ -35,7 +35,7 @@ namespace PluginBase
 
             if (string.IsNullOrEmpty(initialPath))
             {
-                var init = await _w.StorageProvider.TryGetFolderFromPathAsync(Path.GetDirectoryName(initialPath));
+                var init = await _w.TryGetFolderFromPathAsync(Path.GetDirectoryName(initialPath));
                 pickOptions.SuggestedStartLocation = init;
             }
 
@@ -43,8 +43,9 @@ namespace PluginBase
 
             IReadOnlyList<IStorageFile> res = null;
 
-            await Dispatcher.UIThread.InvokeAsync(async () => {
-                res = await _w.StorageProvider.OpenFilePickerAsync(pickOptions);
+            await Dispatcher.UIThread.InvokeAsync(async () =>
+            {
+                res = await _w.OpenFilePickerAsync(pickOptions);
             });
 
             if (res.Any())
@@ -57,7 +58,7 @@ namespace PluginBase
             }
         }
 
-        public static void SetWindow(Window w)
+        public static void SetWindow(IStorageProvider w)
         {
             _w = w;
         }
