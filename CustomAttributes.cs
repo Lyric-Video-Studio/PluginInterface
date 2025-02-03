@@ -61,11 +61,19 @@
     }
 
     /// <summary>
-    /// This attribute makes the property visible even if you define it as JsonIgnore. Purpose of this is to provide user some easier value for edit, 
+    /// This attribute makes the property visible even if you define it as JsonIgnore. Purpose of this is to provide user some easier value for edit,
     /// where the setter actually modifies something else
     /// </summary>
-    public class ForceShowOnDynamicEdit: Attribute
+    public class ForceShowOnDynamicEdit : Attribute
     {
+    }
 
+    /// <summary>
+    /// Add button to perform custom action. Attach this to public function, no parameters, Function name must follow CamelCase-Style, to better user exp.
+    /// Dynamic view is refreshed after invoking the function
+    /// </summary>
+    public class CustomAction(string frienlyName) : Attribute
+    {
+        public string FriendlyName { get; } = frienlyName;
     }
 }
