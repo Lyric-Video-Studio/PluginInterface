@@ -56,6 +56,9 @@
         }
     }
 
+    /// <summary>
+    /// Hides this property from view
+    /// </summary>
     public class IgnoreDynamicEdit : Attribute
     {
     }
@@ -75,5 +78,12 @@
     public class CustomAction(string frienlyName) : Attribute
     {
         public string FriendlyName { get; } = frienlyName;
+    }
+
+    /// <summary>
+    /// Allow dropping of files to this property. Only supported for strings
+    /// </summary>
+    public class EnableFileDrop : Attribute
+    {
     }
 }
