@@ -47,7 +47,8 @@ namespace PluginBase
 
         /// <summary>
         /// Initialized plugin so that it's ready for use. Return empty (or null) string if everything is ok, user is displayable message if not
-        /// See also GeneralSettings function, object should match it. Should not make any connections outside in this function yet (preferred)
+        /// See also GeneralSettings function, object should match it. Should not make any connections outside in this function yet (preferred).
+        /// Remember that GetVideo and GetImage functions should not rely to any instance properties, because the function will be called multiple times simultaneously
         /// </summary>
         public Task<string> Initialize(object settings);
 
@@ -108,5 +109,10 @@ namespace PluginBase
         /// Sets the type of track this plugin is instantiated to. Used when same plugin can handle multiple types
         /// </summary>
         public TrackType CurrentTrackType { get; set; }
+
+        /// <summary>
+        /// Return the text part of the payload, usually prompt. This will be displayed on item in timeline. Don't include any source paths to it, just return empty if this function does not matter to you
+        /// </summary>
+        public string TextualRepresentation(object itemPayload);
     }
 }
