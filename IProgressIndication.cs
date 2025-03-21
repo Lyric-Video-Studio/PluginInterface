@@ -6,6 +6,9 @@
     /// </summary>
     public interface IProgressIndication
     {
+        /// <summary>
+        /// Application gives you progress action to invoke, when generation is progressing
+        /// </summary>
         void SetProgressCallback(Action<(int currentProgress, int maxProgress)> action);
     }
 }
