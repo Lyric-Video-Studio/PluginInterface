@@ -30,8 +30,9 @@ namespace PluginBase
         void ViewClosed();
 
         /// <summary>
-        /// Expands the track payload ui to cover the whole area. Track payload ui should also handle the item payload as well
+        /// This is optional funtion, usefull when ExpandTrackPayloadUi = true. Usually it's enough to trust the UserControl dataContext, but in cases of
+        /// more special ui, you get more control with this
         /// </summary>
-        bool ExpandTrackPayloadUi { get; }
+        void SetPayloads(object trackpayload, object trackOverridePayload, object itemPayload);
     }
 }
