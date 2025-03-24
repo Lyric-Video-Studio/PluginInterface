@@ -48,6 +48,7 @@
         /// and item has the specific prompt with other small finatunigs. Do not return reference to same object, otherwise editing one track settings
         /// can lead to editing others as well
         /// </summary>
+        [Obsolete("Will be removed soonish, you can use public IPluginBase.TrackType CurrentTrackType to differentiate what type of payload is needed")]
         public object DefaultPayloadForImageTrack();
 
         /// <summary>
@@ -55,16 +56,19 @@
         /// Use [Description] argument to provide tooltip for payload property if needed. Do not return reference to same object, otherwise editing one track settings
         /// can lead to editing others as well
         /// </summary>
+        [Obsolete("Will be removed soonish, you can use public IPluginBase.TrackType CurrentTrackType to differentiate what type of payload is needed")]
         public object DefaultPayloadForImageItem();
 
         /// <summary>
         /// Get copy of payload. This is needed because main app does not know the object type.
         /// </summary>
+        [Obsolete("Will be removed soonish, you can use public IPluginBase.TrackType CurrentTrackType to differentiate what type of payload is needed")]
         public object CopyPayloadForImageTrack(object obj);
 
         /// <summary>
         /// Get copy of payload. This is needed because main app does not know the object type.
         /// </summary>
+        [Obsolete("Will be removed soonish, you can use public IPluginBase.TrackType CurrentTrackType to differentiate what type of payload is needed")]
         public object CopyPayloadForImageItem(object obj);
 
         /// <summary>
@@ -72,6 +76,7 @@
         /// Validating payload reduces traffic to servers. Validation is done when item is opened or some of the values change.
         /// User interface does not prevent user pressing "generate" button for invalid payload, but the plugin can do that if it wishes so
         /// </summary>
+        [Obsolete("Will be removed soonish, you can use public IPluginBase.TrackType CurrentTrackType to differentiate what type of payload is needed")]
         public (bool payloadOk, string reasonIfNot) ValidateImagePayload(object payload);
     }
 }
