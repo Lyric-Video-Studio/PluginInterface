@@ -10,12 +10,12 @@ namespace PluginBase
     public interface IPluginEditUi
     {
         /// <summary>
-        /// Return ContentView if you have custom ui for editing item. Return null to use dafault
+        /// Return ContentView if you have custom ui for editing item. Return null to use default
         /// </summary>
         UserControl GetItemPayloadEditingUi(object payload);
 
         /// <summary>
-        /// Return ContentView if you have custom ui for editing track payload. Return null to use dafault
+        /// Return ContentView if you have custom ui for editing track payload. Return null to use default
         /// </summary>
         UserControl GetTrackPayloadEditingUi(object payload);
 
@@ -28,5 +28,10 @@ namespace PluginBase
         /// Clean up and dispose items
         /// </summary>
         void ViewClosed();
+
+        /// <summary>
+        /// Expands the track payload ui to cover the whole area. Track payload ui should also handle the item payload as well
+        /// </summary>
+        bool ExpandTrackPayloadUi { get; }
     }
 }
