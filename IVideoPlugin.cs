@@ -6,6 +6,7 @@
         /// Path to file, if video file was writen to disk. Leave empty/null if frames were stored as single frames to disk to folder given in GetVideo
         /// When returning just frames, it is important that frames are numbered in a way that video library can regognize them, 1.jpg, 2.jpg WILL NOT DO.
         /// use frameIndex.ToString(CommonConstants.DefaultIntToStringFormat) + ".jpg"; for example to make sure the files are like 000000001.jpg
+        /// If leaving this empty, ImageFormat must be set!!!
         /// </summary>
         public string VideoFile;
 
@@ -23,6 +24,11 @@
         /// Error message, it the Success was false
         /// </summary>
         public string ErrorMsg;
+
+        /// <summary>
+        /// Fps of the image seqence, 0 = use project framerate
+        /// </summary>
+        public int Fps;
 
         /// <summary>
         /// Parameters used by the service to generate this image. It's not recommended just to add all there, filter out the ones that user might actually need, like seed or revised prompt
