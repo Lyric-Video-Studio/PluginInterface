@@ -5,12 +5,7 @@
         /// <summary>
         /// Audio file
         /// </summary>
-        public string Audio;
-
-        /// <summary>
-        /// True of false, based on operation status
-        /// </summary>
-        public bool Success;
+        public string AudioFile;
 
         /// <summary>
         /// Audio format, wav, mp3 tested and officially supported. Other formast might work as well
@@ -27,6 +22,11 @@
         /// </summary>
         public List<(string Key, string Value)> Params;
 
+        /// <summary>
+        /// Was the operation ok
+        /// </summary>
+        public bool Success { get; set; }
+
         public AudioResponse()
         {
         }
@@ -40,6 +40,6 @@
         /// When combaning track & item payloads, remeber those are references, so create new instances of them to prevent modifying original
         /// return ImageResponse
         /// </summary>
-        public Task<AudioResponse> GetAudio(object trackPayload, object itemsPayload);
+        public Task<AudioResponse> GetAudio(object trackPayload, object itemsPayload, string folderToSaveAudio);
     }
 }
