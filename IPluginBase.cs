@@ -2,6 +2,39 @@
 
 namespace PluginBase
 {
+    public static class WorkspaceSettings
+    {
+        /// <summary>
+        /// Do not modify this. This is set when oroject has been loaded. Paths can be relative to this, so whenever dealing with images for example, check this
+        /// </summary>
+        public static string CurrentProjectPath;
+
+        public static string GetAbsolutePath(string path, bool forceAbsolute = false)
+        {
+            if (string.IsNullOrEmpty(path))
+            {
+                return path;
+            }
+
+            if (Path.IsPathRooted(path))
+            {
+                return path;
+            }
+
+            if (File.Exists(path) && !forceAbsolute)
+            {
+                return path;
+            }
+
+            if (string.IsNullOrEmpty(CurrentProjectPath))
+            {
+                return "";
+            }
+
+            return Path.Combine(Path.GetDirectoryName(CurrentProjectPath), path);
+        }
+    }
+
     /// <summary>
     /// Base interface for plugins, provides common functions needed for all plugins. Any parameter editing is done on app ui OR with ui provided by the plugin. App ui finds editable properties dynamically, if built-in ui is used,
     /// and fills the editor with public/writeable properties. You can use these attributes to manipulate editing ui.
@@ -16,7 +49,8 @@ namespace PluginBase
         public enum TrackType
         {
             Image,
-            Video
+            Video,
+            Audio
         }
 
         /// <summary>
@@ -114,5 +148,20 @@ namespace PluginBase
         /// Return the text part of the payload, usually prompt. This will be displayed on item in timeline. Don't include any source paths to it, just return empty if this function does not matter to you
         /// </summary>
         public string TextualRepresentation(object itemPayload);
+
+        /// <summary>
+        /// Get default payload for track. It's up to you how you combine this info. In general, track should have most of the information and item only the specific ones
+        /// Use [Description] attribute to provide tooltip for payload property if needed. Example: Automatic111 txtToImg, track has most variables that is needed for generation
+        /// and item has the specific prompt with other small finatunigs. Do not return reference to same object, otherwise editing one track settings
+        /// can lead to editing others as well. TrackType is alwatys set before this is called, so if your plugin supports multiple outputs, use that enum
+        /// </summary>
+        public object DefaultPayloadForTrack();
+
+        /// <summary>
+        /// Get default payload. It's up to you how you combine this info. In general, track should have most of the information and item only the specific ones
+        /// Use [Description] argument to provide tooltip for payload property if needed. Do not return reference to same object, otherwise editing one track settings
+        /// can lead to editing others as well,  TrackType is alwatys set before this is called, so if your plugin supports multiple outputs, use that enum
+        /// </summary>
+        public object DefaultPayloadForItem();
     }
 }

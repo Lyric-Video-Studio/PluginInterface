@@ -28,7 +28,7 @@
         /// <summary>
         /// Fps of the image seqence, 0 = use project framerate
         /// </summary>
-        public int Fps;
+        public double Fps;
 
         /// <summary>
         /// Parameters used by the service to generate this image. It's not recommended just to add all there, filter out the ones that user might actually need, like seed or revised prompt
