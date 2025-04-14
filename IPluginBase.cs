@@ -163,5 +163,22 @@ namespace PluginBase
         /// can lead to editing others as well,  TrackType is alwatys set before this is called, so if your plugin supports multiple outputs, use that enum
         /// </summary>
         public object DefaultPayloadForItem();
+
+        /// <summary>
+        /// Get copy of payload. This is needed because main app does not know the object type. Check track type for correct payload type, if multiple outputs supported
+        /// </summary>
+        public object CopyPayloadForTrack(object obj);
+
+        /// <summary>
+        /// Get copy of payload. This is needed because main app does not know the object type. Check track type for correct payload type, if multiple outputs supported
+        /// </summary>
+        public object CopyPayloadForItem(object obj);
+
+        /// <summary>
+        /// Validate item or track payload. This is important for example in img2vid, where image must be of certain size
+        /// Validating payload reduces traffic to servers. Validation is done when item is opened or some of the values change.
+        /// User interface does not prevent user pressing "generate" button for invalid payload, but the plugin can do that if it wishes so
+        /// </summary>
+        public (bool payloadOk, string reasonIfNot) ValidatePayload(object payload);
     }
 }
