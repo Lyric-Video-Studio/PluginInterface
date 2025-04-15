@@ -21,7 +21,7 @@ namespace PluginBase
 
         public static void Set(string key, string value)
         {
-            if (IsRendering)
+            if (IsRendering || value == null)
             {
                 // Will crash the app if this is called on project rendering, when copies of the project is made
                 return;
