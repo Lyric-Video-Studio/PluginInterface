@@ -180,5 +180,16 @@ namespace PluginBase
         /// User interface does not prevent user pressing "generate" button for invalid payload, but the plugin can do that if it wishes so
         /// </summary>
         public (bool payloadOk, string reasonIfNot) ValidatePayload(object payload);
+
+        /// <summary>
+        /// Provide all files that are currently redefences in track or item payloads
+        /// </summary>
+        public List<string> FilePathsOnPayloads(object trackPayload, object itemPayload);
+
+        /// <summary>
+        /// If user has archived the project or copied all content to sub folder, replace any references to moved files in payloads
+        /// originalPath = exact same list that you gave on FilePathsOnPayloads function
+        /// </summary>
+        public void ReplaceFilePathsOnPayloads(List<string> originalPath, List<string> newPath, object trackPayload, object itemPayload);
     }
 }
