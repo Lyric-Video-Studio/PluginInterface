@@ -57,6 +57,14 @@
     }
 
     /// <summary>
+    /// By default, nested properties are names "ParentPropertyName - Property name", use this if you do not wish to show then
+    /// For example, if your payload is just a "wrapper" for another class and/or the names can't be confused
+    /// </summary>
+    public class IgnorePropertyName : Attribute
+    {
+    }
+
+    /// <summary>
     /// Hides this property from view
     /// </summary>
     public class IgnoreDynamicEdit : Attribute
