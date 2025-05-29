@@ -1,4 +1,5 @@
-﻿using System.Text.Json.Nodes;
+﻿using System.Runtime.InteropServices;
+using System.Text.Json.Nodes;
 
 namespace PluginBase
 {
@@ -30,8 +31,16 @@ namespace PluginBase
             {
                 return "";
             }
-
-            return Path.Combine(Path.GetDirectoryName(CurrentProjectPath), path);
+            var mixedPaths = Path.Combine(Path.GetDirectoryName(CurrentProjectPath), path);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Linux))
+            {
+                mixedPaths = mixedPaths.Replace('\\', Path.DirectorySeparatorChar);
+            }
+            else
+            {
+                mixedPaths = mixedPaths.Replace('/', Path.DirectorySeparatorChar);
+            }
+            return mixedPaths;
         }
     }
 

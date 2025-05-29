@@ -4,10 +4,37 @@ namespace PluginBase
 {
     public static class SecureStorageWrapper
     {
-        public static bool IsRendering;
+        // WIP! Do not use this yet. This will be null on windows ;)
+        public static ISecureStorageWrapper SecStorage { get; set; }
+
+        private static bool _isRendering;
+        public static bool IsRendering
+        {
+            get
+            {
+                if (SecStorage != null)
+                {
+                    return SecStorage.IsRendering;
+                }
+                return _isRendering;
+            }
+
+            set
+            {
+                if (SecStorage != null)
+                {
+                    SecStorage.IsRendering = value;
+                }
+                _isRendering = value; ;
+            }
+        }
 
         public static string Get(string key)
         {
+            if (SecStorage != null)
+            {
+                return SecStorage.Get(key);
+            }
             if (IsRendering)
             {
                 // Will crash the app if this is called on project rendering, when copies of the project is made
@@ -21,6 +48,11 @@ namespace PluginBase
 
         public static void Set(string key, string value)
         {
+            if (SecStorage != null)
+            {
+                SecStorage.Set(key, value);
+                return;
+            }
             if (IsRendering || value == null)
             {
                 // Will crash the app if this is called on project rendering, when copies of the project is made
