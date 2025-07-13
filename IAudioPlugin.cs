@@ -8,6 +8,11 @@
         public string AudioFile;
 
         /// <summary>
+        /// Alternative file, can be empty
+        /// </summary>
+        public string AlternativeAudioFile;
+
+        /// <summary>
         /// Audio format, wav, mp3 tested and officially supported. Other formast might work as well
         /// </summary>
         public string AudioFormat = "mp3";
