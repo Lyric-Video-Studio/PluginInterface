@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.2.4" />
-    <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.1" />
+    <PackageReference Include="Avalonia" Version="11.3.2" />
+    <PackageReference Include="Meziantou.Framework.Win32.CredentialManager" Version="1.7.4" />
   </ItemGroup>
 </Project>
