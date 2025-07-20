@@ -94,4 +94,11 @@
     public class EnableFileDrop : Attribute
     {
     }
+
+    /// <summary>
+    /// Enable folder picker. When editor field gets focus, it will first launch folder pick dialog and only after that, allows user to manually edit it
+    /// </summary>
+    public class EnableFolderPicker : Attribute
+    {
+    }
 }
