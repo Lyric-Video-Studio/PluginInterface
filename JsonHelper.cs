@@ -1,6 +1,8 @@
-﻿using System.Text.Json;
+﻿using System.Text.Encodings.Web;
+using System.Text.Json;
 using System.Text.Json.Nodes;
 using System.Text.Json.Serialization;
+using System.Text.Unicode;
 
 namespace PluginBase
 {
@@ -21,7 +23,7 @@ namespace PluginBase
 
         public static string Serialize<T>(T obj)
         {
-            var output = JsonSerializer.Serialize(obj, GetSettings());
+            var output = JsonSerializer.Serialize(obj, GetSettings()).Replace(@"\u0026", "&");
             return output;
         }
 
@@ -42,7 +44,17 @@ namespace PluginBase
         {
             if (settings == null)
             {
-                settings = new JsonSerializerOptions() { WriteIndented = true, NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals, UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode };
+                var encoderSettings = new TextEncoderSettings();
+                encoderSettings.AllowCharacters('\u0026');
+                encoderSettings.AllowCharacters('&');
+                encoderSettings.AllowRange(UnicodeRanges.All);
+                settings = new JsonSerializerOptions()
+                {
+                    Encoder = JavaScriptEncoder.Create(encoderSettings),
+                    WriteIndented = true,
+                    NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
+                    UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode
+                };
                 /*settings.Error = delegate (object? sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
                 {
                     Errors.Add(args.ErrorContext.Error.ToString());
