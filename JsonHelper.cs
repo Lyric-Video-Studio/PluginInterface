@@ -18,7 +18,7 @@ namespace PluginBase
 
         public static T Deserialize<T>(string path)
         {
-            return DeserializeString<T>(File.ReadAllText(path));
+            return DeserializeString<T>(ReadAllText(path));
         }
 
         public static string Serialize<T>(T obj)
@@ -62,6 +62,19 @@ namespace PluginBase
                 };*/
             }
             return settings;
+        }
+
+        public static string ReadAllText(string path)
+        {
+            if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            {
+                return "";
+            }
+
+            using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+            using var textReader = new StreamReader(fileStream);
+            var content = textReader.ReadToEnd();
+            return content;
         }
 
         public static object ToExactType<T>(JsonObject obj)
