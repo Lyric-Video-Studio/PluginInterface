@@ -57,6 +57,23 @@
     }
 
     /// <summary>
+    /// Define custom name for property, if you do not wish to use property name
+    /// Usefull in cases where you have properties that mean the same but are not visible at the same time
+    public class CustomNameAttribute : Attribute
+    {
+        public readonly string Name = "";
+
+        public CustomNameAttribute()
+        {
+        }
+
+        public CustomNameAttribute(string name)
+        {
+            Name = name;
+        }
+    }
+
+    /// <summary>
     /// By default, nested properties are names "ParentPropertyName - Property name", use this if you do not wish to show then
     /// For example, if your payload is just a "wrapper" for another class and/or the names can't be confused
     /// </summary>
