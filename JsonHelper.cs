@@ -29,8 +29,20 @@ namespace PluginBase
 
         public static void SerializeToPath<T>(T obj, string path)
         {
-            var output = JsonSerializer.Serialize(obj, GetSettings());
-            File.WriteAllText(path, output);
+            var retry = 3;
+            while (retry > 0)
+            {
+                try
+                {
+                    var output = JsonSerializer.Serialize(obj, GetSettings());
+                    File.WriteAllText(path, output);
+                    break;
+                }
+                catch (Exception)
+                {
+                }
+                retry--;
+            }
         }
 
         public static T DeepCopy<T>(object obj)
@@ -55,11 +67,6 @@ namespace PluginBase
                     NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
                     UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode
                 };
-                /*settings.Error = delegate (object? sender, Newtonsoft.Json.Serialization.ErrorEventArgs args)
-                {
-                    Errors.Add(args.ErrorContext.Error.ToString());
-                    args.ErrorContext.Handled = true;
-                };*/
             }
             return settings;
         }
@@ -70,11 +77,23 @@ namespace PluginBase
             {
                 return "";
             }
+            var retry = 3;
 
-            using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
-            using var textReader = new StreamReader(fileStream);
-            var content = textReader.ReadToEnd();
-            return content;
+            while (retry > 0)
+            {
+                try
+                {
+                    using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    using var textReader = new StreamReader(fileStream);
+                    var content = textReader.ReadToEnd();
+                    return content;
+                }
+                catch (Exception)
+                {
+                }
+                retry--;
+            }
+            return "";
         }
 
         public static object ToExactType<T>(JsonObject obj)
