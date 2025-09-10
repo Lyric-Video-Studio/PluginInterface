@@ -35,7 +35,7 @@ namespace PluginBase
                 try
                 {
                     var output = JsonSerializer.Serialize(obj, GetSettings());
-                    File.WriteAllText(path, output);
+                    FileSystemWrapper.WriteAllText(path, output);
                     break;
                 }
                 catch (Exception)
@@ -83,10 +83,11 @@ namespace PluginBase
             {
                 try
                 {
-                    using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
+                    /*using var fileStream = new FileStream(path, FileMode.Open, FileAccess.Read, FileShare.ReadWrite);
                     using var textReader = new StreamReader(fileStream);
-                    var content = textReader.ReadToEnd();
-                    return content;
+                    var content = textReader.ReadToEnd();*/
+
+                    return FileSystemWrapper.Instance.ReadAllText(path);
                 }
                 catch (Exception)
                 {
