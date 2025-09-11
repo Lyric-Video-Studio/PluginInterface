@@ -8,6 +8,7 @@ namespace PluginBase
         public static ISecureStorageWrapper SecStorage { get; set; }
 
         private static bool _isRendering;
+
         public static bool IsRendering
         {
             get
@@ -29,11 +30,11 @@ namespace PluginBase
             }
         }
 
-        public static string Get(string key)
+        public static async Task<string> Get(string key)
         {
             if (SecStorage != null)
             {
-                return SecStorage.Get(key);
+                return await SecStorage.Get(key);
             }
             if (IsRendering)
             {

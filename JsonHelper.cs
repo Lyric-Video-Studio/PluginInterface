@@ -16,9 +16,14 @@ namespace PluginBase
             return output;
         }
 
+        public static async Task<T> DeserializeAsync<T>(string path)
+        {
+            return DeserializeString<T>(await ReadAllText(path));
+        }
+
         public static T Deserialize<T>(string path)
         {
-            return DeserializeString<T>(ReadAllText(path));
+            return DeserializeString<T>(ReadAllText(path).Result);
         }
 
         public static string Serialize<T>(T obj)
@@ -35,7 +40,7 @@ namespace PluginBase
                 try
                 {
                     var output = JsonSerializer.Serialize(obj, GetSettings());
-                    FileSystemWrapper.WriteAllText(path, output);
+                    _ = FileSystemWrapper.WriteAllText(path, output);
                     break;
                 }
                 catch (Exception)
@@ -71,9 +76,9 @@ namespace PluginBase
             return settings;
         }
 
-        public static string ReadAllText(string path)
+        public static async Task<string> ReadAllText(string path)
         {
-            if (string.IsNullOrEmpty(path) || !File.Exists(path))
+            if (string.IsNullOrEmpty(path) || !await FileSystemWrapper.Exists(path))
             {
                 return "";
             }
@@ -87,7 +92,7 @@ namespace PluginBase
                     using var textReader = new StreamReader(fileStream);
                     var content = textReader.ReadToEnd();*/
 
-                    return FileSystemWrapper.Instance.ReadAllText(path);
+                    return await FileSystemWrapper.Instance.ReadAllTextAsync(path);
                 }
                 catch (Exception)
                 {

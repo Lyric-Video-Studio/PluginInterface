@@ -6,9 +6,19 @@ namespace PluginBase
     {
         public static IFileSystemWrapper Instance { get; set; }
 
-        internal static void WriteAllText(string path, string output)
+        public static async Task Delete(string finalPath)
         {
-            Instance.WriteFile(path, Encoding.UTF8.GetBytes(output));
+            await Instance.DeleteAsync(finalPath);
+        }
+
+        public static async Task<bool> Exists(string finalPath)
+        {
+            return await Instance.Exist(finalPath);
+        }
+
+        public static async Task WriteAllText(string path, string output)
+        {
+            await Instance.WriteFile(path, Encoding.UTF8.GetBytes(output), output);
         }
     }
 
@@ -18,24 +28,20 @@ namespace PluginBase
 
         Task<int> Initialize();
 
-        string ReadAllText(string path);
-
         Task<string> ReadAllTextAsync(string path);
-
-        byte[] ReadAll(string path);
 
         Task<byte[]> ReadAllAsync(string path);
 
-        void Delete(string path);
-
         Task DeleteAsync(string path);
 
-        void Exist(string path);
+        Task<bool> Exist(string path);
 
         Task CreateDirectoryAsync(string path);
 
-        Task WriteFile(string path, byte[] contents);
+        Task WriteFile(string path, byte[] contents, string rawString = "");
 
         Task<(long Usage, long Quota)?> CheckAvailableSpaceAsync();
+
+        Task PreInit();
     }
 }
