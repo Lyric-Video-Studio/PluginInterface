@@ -12,6 +12,9 @@ namespace PluginBase
 
         public static string GetAbsolutePath(string path, bool forceAbsolute = false)
         {
+#if WEB
+            return path;
+#else
             if (string.IsNullOrEmpty(path))
             {
                 return path;
@@ -41,6 +44,7 @@ namespace PluginBase
                 mixedPaths = mixedPaths.Replace('/', Path.DirectorySeparatorChar);
             }
             return mixedPaths;
+#endif
         }
     }
 

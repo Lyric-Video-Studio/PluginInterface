@@ -16,6 +16,9 @@ namespace PluginBase
 
         public struct FilePick
         {
+            public Stream PathStream { get; set; }
+            public List<Stream> PathStreams { get; set; }
+
             public string Path { get; set; }
             public string[] Paths { get; set; }
         }
@@ -50,8 +53,39 @@ namespace PluginBase
 
             if (res.Any())
             {
+#if WEB
+                var mediaCachePath = "/pickedFiles/";
+                var streams = new List<Stream>();
+                var paths = new List<string>();
+                var firstFile = "";
+
+                foreach (var item in res)
+                {
+                    var newPath = $"{mediaCachePath}{Guid.NewGuid()}{Path.GetExtension(item.Name)}";
+                    if (string.IsNullOrEmpty(firstFile))
+                    {
+                        firstFile = newPath;
+                    }
+
+                    streams.Add(await item.OpenReadAsync());
+                    paths.Add(newPath);
+                }
+                // TODO: Can we append the file in smaller chunks?
+                for (int i = 0; i < streams.Count; i++)
+                {
+                    using var memStream = new MemoryStream();
+                    await streams[i].CopyToAsync(memStream);
+                    await FileSystemWrapper.Instance.WriteFile(paths[i], memStream.ToArray());
+                    streams[i].Dispose();
+                }
+                // Files need to be saved to cache
+
+                return new FilePickRes() { IsSuccessful = true, File = new() { Path = firstFile, Paths = paths.ToArray() } };
+#else
+
                 var paths = pickMany ? res.Select(s => s.Path.LocalPath).ToArray() : [];
                 return new FilePickRes() { IsSuccessful = true, File = new() { Path = res.First().Path.LocalPath, Paths = paths } };
+#endif
             }
             {
                 return new FilePickRes() { IsSuccessful = false };
