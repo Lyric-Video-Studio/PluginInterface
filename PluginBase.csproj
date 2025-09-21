@@ -5,6 +5,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
     <Platforms>AnyCPU;x64</Platforms>
+    <DefineConstants>$(DefineConstants);WEB</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
