@@ -9,6 +9,6 @@
         public static List<string> ImgTypes => [".png", ".jpg", ".jpeg", ".bmp", ".tga", ".webp"];
         public static List<string> VideoTypes => [".avi", ".mp4", ".divx", ".wmv", ".mts", ".mpg", ".mkv"];
         public static List<string> AudioTypes => [".wav", ".wma", ".mp3", ".ogg", ".rma", ".m4a"];
-        public static List<string> LyricTypes => [".txt", ".lrc"];
+        public static List<string> LyricTypes => [".txt", ".lrc", ".vtt"];
     }
 }
