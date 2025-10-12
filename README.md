@@ -5,13 +5,13 @@ Public c# interface for creating new image/video plugins for Lyric Video Studio.
 1. Clone this repository as submodule (for example)
 2. Reference this project in your plugin
 3. Build/publish your plugin
-4. Copy plugin under 'plugins' in Lyric Video Studio and start the app
+4. Copy plugin under 'plugins' folder in Lyric Video Studio installation folder (por to your specified plugin-folder) and start the app
 
 See build in plugins for examples on how to create plugins: 
 https://github.com/Lyric-Video-Studio/BuildInPlugins
 (note that these might not represent the best ways to develop things, lot's of these have been done in "mimimun viable product"-mentality. Also many of the interfaces provided by 3rd party services are lacking a bit)
 
-Use contact form in https://lyricvideo.studio to request access to Microsoft Store beta "flight" list. Also, trial mode is coming in 0.9, it will support loading of 3rd party plugins.
+Use contact form in https://lyricvideo.studio to request access to Microsoft Store beta "flight" list. Also, trial mode works as well. INcluding the standalone distribution in https://lyricvideo.studio. Note: LITE-version does not load 3rd party plugins unless 'whitelisted'
 
 Commands to publish this project / plugins (Tested and working)
 
