@@ -31,6 +31,11 @@
         public double Fps;
 
         /// <summary>
+        /// Path to video mask. Optional. App will apply the mask automatically
+        /// </summary>
+        public string VideoMask;
+
+        /// <summary>
         /// Parameters used by the service to generate this image. It's not recommended just to add all there, filter out the ones that user might actually need, like seed or revised prompt
         /// </summary>
         public List<(string Key, string Value)> Params;
