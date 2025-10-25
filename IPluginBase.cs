@@ -53,7 +53,7 @@ namespace PluginBase
     /// 3. [EditorHeigth] = modify default maximum heigth of editor item, value is applied to .MaximumHeightRequest if provided
     /// 3. [Columnspan] = Add columnspan to item so it will more colums
     /// </summary>
-    public interface IPluginBase
+    public interface IPluginBase : IPropertyOptionsProvider
     {
         public enum TrackType
         {
@@ -117,11 +117,6 @@ namespace PluginBase
         /// Return status on initialization, main app may ask this and then initialize the plugin "lazy"
         /// </summary>
         public bool IsInitialized { get; }
-
-        /// <summary>
-        /// Return selection options if property should be shown as combobox / selection. Return null or empty list if no selection options for property
-        /// </summary>
-        public Task<string[]> SelectionOptionsForProperty(string propertyName);
 
         /// <summary>
         /// Create new instance. This instance can have different settings and different intances may be active of different tracks
