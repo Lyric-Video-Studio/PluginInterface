@@ -6,6 +6,11 @@
     /// </summary>
     public interface IPayloadPropertyVisibility
     {
+        /// <summary>
+        /// If you need to react to some property change, that is initiated by user, this property is true for the duration of set (per value)
+        /// </summary>
+        public static bool UserInitiatedSet { get; set; }
+
         bool ShouldPropertyBeVisible(string propertyName, object trackPayload, object itemPayload);
     }
 }
