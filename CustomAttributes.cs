@@ -118,4 +118,11 @@
     public class EnableFolderPicker : Attribute
     {
     }
+
+    /// <summary>
+    /// Mask the letters of text box with *, for api keys etc
+    /// </summary>
+    public class MaskInput : Attribute
+    {
+    }
 }
