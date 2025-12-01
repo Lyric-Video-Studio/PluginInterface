@@ -13,7 +13,7 @@
     }
 
     /// <summary>
-    /// INherit this if your payload support importing textual prompt whe importing images
+    /// Imherit this if your payload supports importing textual prompt when importing images
     /// </summary>
     public interface IAppendLyrics
     {
