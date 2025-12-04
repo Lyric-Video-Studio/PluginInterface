@@ -195,5 +195,15 @@ namespace PluginBase
         /// originalPath = exact same list that you gave on FilePathsOnPayloads function
         /// </summary>
         public void ReplaceFilePathsOnPayloads(List<string> originalPath, List<string> newPath, object trackPayload, object itemPayload);
+
+        /// <summary>
+        /// Create new item payload based on text.
+        /// </summary>
+        object ItemPayloadFromLyrics(string text);
+
+        /// <summary>
+        /// Replace text prompt from payload
+        /// </summary>
+        void AppendToPayloadFromLyrics(string text, object payload);
     }
 }
