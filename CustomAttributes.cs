@@ -125,4 +125,11 @@
     public class MaskInput : Attribute
     {
     }
+
+    /// <summary>
+    /// Trigger full ui refresh when value changed by user in dynamic view. Only works for booleans and comboboxes
+    /// </summary>
+    public class TriggerReload : Attribute
+    {
+    }
 }
