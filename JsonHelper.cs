@@ -65,7 +65,8 @@ namespace PluginBase
                     Encoder = JavaScriptEncoder.Create(encoderSettings),
                     WriteIndented = true,
                     NumberHandling = JsonNumberHandling.AllowNamedFloatingPointLiterals,
-                    UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode
+                    UnknownTypeHandling = JsonUnknownTypeHandling.JsonNode,
+                    DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
                 };
             }
             return settings;
