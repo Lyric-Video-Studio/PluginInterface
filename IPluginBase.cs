@@ -205,5 +205,10 @@ namespace PluginBase
         /// Replace text prompt from payload
         /// </summary>
         void AppendToPayloadFromLyrics(string text, object payload);
+
+        /// <summary>
+        /// USer has requested for data deletion, clear all stored access tokens with SecureStorage wrapper. And any other data that plugin might have stored
+        /// </summary>
+        void UserDataDeleteRequested();
     }
 }
