@@ -133,4 +133,17 @@
     public class TriggerReload : Attribute
     {
     }
+
+    /// <summary>
+    /// Alternative, easier way to define property options
+    /// </summary>
+    public class PropertyComboOptions : Attribute
+    {
+        public readonly string[] Opts;
+
+        public PropertyComboOptions(string[] opts)
+        {
+            Opts = opts;
+        }
+    }
 }
