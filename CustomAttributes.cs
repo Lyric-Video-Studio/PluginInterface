@@ -146,4 +146,11 @@
             Opts = opts;
         }
     }
+
+    /// <summary>
+    /// Shows slider is also [Range(min, max)] is used
+    /// </summary>
+    public class ShowSlider : Attribute
+    {
+    }
 }
