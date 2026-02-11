@@ -152,5 +152,11 @@
     /// </summary>
     public class ShowSlider : Attribute
     {
+        public ShowSlider(int decimals)
+        {
+            Decimals = decimals;
+        }
+
+        public int Decimals { get; }
     }
 }
