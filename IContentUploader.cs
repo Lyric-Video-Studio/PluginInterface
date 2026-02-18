@@ -11,6 +11,15 @@ namespace PluginBase
     /// </summary>
     public interface IContentUploader
     {
+        public enum ContentDeliveryBackends
+        {
+            None,
+            Google, 
+            Dropbox
+        }
+
+        public ContentDeliveryBackends Backend { get; }
+
         Task<(HttpStatusCode responseCode, string uploadedUrl, bool isLocalFile)> RequestContentUpload(string localFilePath);
     }
 }

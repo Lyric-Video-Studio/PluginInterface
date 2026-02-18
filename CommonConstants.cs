@@ -15,7 +15,6 @@
 
         {
             return extension.ToLower() switch
-
             {
                 ".mp3" => "audio/mpeg",
                 ".wav" => "audio/wav",
@@ -32,6 +31,18 @@
                 ".wmv" => "video/x-ms-wmv",
                 ".flv" => "video/x-flv",
                 ".3gp" => "video/3gpp",
+                ".jpg" => "image/jpeg",
+                ".jpeg" => "image/jpeg",
+                ".png" => "image/png",
+                ".gif" => "image/gif",
+                ".bmp" => "image/bmp",
+                ".webp" => "image/webp",
+                ".tiff" => "image/tiff",
+                ".svg" => "image/svg+xml",
+                ".ico" => "image/x-icon",
+                ".heif" => "image/heif",
+                ".heic" => "image/heic",
+                ".avif" => "image/avif",
 
                 _ => "audio/mpeg" // Default fallback
             };
