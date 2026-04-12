@@ -159,4 +159,12 @@
 
         public int Decimals { get; }
     }
+
+    /// <summary>
+    /// Hides all children of property, if visibility of the parent is hidden. Normally, children are hidden only by property name. 
+    /// Note that you need to call full refresh if the visibility property for the parent changes. This is because children will not be populated to view at all
+    /// </summary>
+    public class HideAllChildren : Attribute
+    {
+    }
 }
