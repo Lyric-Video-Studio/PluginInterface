@@ -13,7 +13,7 @@
         public string AlternativeAudioFile;
 
         /// <summary>
-        /// Audio format, wav, mp3 tested and officially supported. Other formast might work as well
+        /// Audio format, wav, mp3 tested and officially supported. Other formast might work as well. Use .bin for pcm audio and fill the audio details for app to convert it to wav
         /// </summary>
         public string AudioFormat = "mp3";
 
@@ -32,9 +32,21 @@
         /// </summary>
         public bool Success { get; set; }
 
+        /// <summary>
+        /// Audio format info, if the audio was raw bytes. LVS will then convert it to wav
+        /// </summary>
+        public AudioFormatData? FormatInfo { get; set; }
+
         public AudioResponse()
         {
         }
+    }
+
+    public struct AudioFormatData
+    {
+        public int Bitrate { get; set; }
+        public int AudioSampleRate { get; set; }
+        public int Channels { get; set; }
     }
 
     public interface IAudioPlugin : IPluginBase
