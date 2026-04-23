@@ -100,8 +100,9 @@
     /// Add button to perform custom action. Attach this to public function, no parameters, Function name must follow CamelCase-Style, to better user exp.
     /// Dynamic view is refreshed after invoking the function
     /// </summary>
-    public class CustomAction(string frienlyName, bool skipViewReload = false) : Attribute
+    public class CustomAction(string frienlyName, bool skipViewReload = false, string groupWith = "") : Attribute
     {
+        public string GroupWith { get; } = groupWith;
         public string FriendlyName { get; } = frienlyName;
         public bool SkipViewReload { get; } = skipViewReload;
     }
