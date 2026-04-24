@@ -8,6 +8,11 @@
         public string Image;
 
         /// <summary>
+        /// List of alternatices as as base64 encoded string
+        /// </summary>
+        public List<string> AlternativesImages;
+
+        /// <summary>
         /// True of false, based on operation status
         /// </summary>
         public bool Success;
