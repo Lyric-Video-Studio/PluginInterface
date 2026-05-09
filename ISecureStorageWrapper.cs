@@ -8,10 +8,10 @@
     {
         public bool IsRendering { get; set; }
 
-        public string Get(string key);
+        public string GetKey(string key);
 
-        public void Set(string key, string value);
+        public void SetKey(string key, string value);
 
-        public void Delete(string key);
+        public void DeleteKey(string key);
     }
 }
