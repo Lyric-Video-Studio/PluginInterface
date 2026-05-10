@@ -97,7 +97,7 @@ namespace PluginBase
             return "";
         }
 
-        public static object ToExactType<T>(JsonObject obj)
+        public static T ToExactType<T>(JsonObject obj)
         {
             return DeserializeString<T>(obj.ToJsonString());
         }
