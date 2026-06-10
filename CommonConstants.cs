@@ -8,7 +8,7 @@
         public static List<string> AllTypes => [.. ImgTypes, .. VideoTypes, .. AudioTypes, .. LyricTypes];
         public static List<string> ImgTypes => [".png", ".jpg", ".jpeg", ".bmp", ".tga", ".webp"];
         public static List<string> VideoTypes => [".avi", ".mp4", ".divx", ".wmv", ".mts", ".mpg", ".mkv", ".mov"];
-        public static List<string> AudioTypes => [".wav", ".wma", ".mp3", ".ogg", ".rma", ".m4a"];
+        public static List<string> AudioTypes => [".wav", ".wma", ".mp3", ".ogg", ".rma", ".m4a", ".flac", ".aac", ".opus", ".webm", ".bin"];
         public static List<string> LyricTypes => [".txt", ".lrc", ".vtt", ".srt", ".tsv"];
 
         public static string GetMimeType(string extension)
