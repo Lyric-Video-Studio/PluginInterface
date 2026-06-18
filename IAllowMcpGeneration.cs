@@ -11,6 +11,6 @@ namespace PluginBase
     /// </summary>
     public interface IAllowMcpGeneration
     {
-        bool AlloMcpAccess { get; set; }
+        bool AllowMcpAccess { get; set; }
     }
 }
