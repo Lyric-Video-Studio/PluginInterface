@@ -168,4 +168,12 @@
     public class HideAllChildren : Attribute
     {
     }
+
+    /// <summary>
+    /// Use this when the image input supports doodling: custom marhings that model uses as guidance
+    /// Separate window will be opened for user to doodle over original image inout
+    /// </summary>
+    public class EnableDoodling : Attribute
+    {
+    }
 }
