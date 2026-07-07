@@ -176,4 +176,11 @@
     public class EnableDoodling : Attribute
     {
     }
+
+    /// <summary>
+    /// Use this when the text field can be very ling, like in a prompt. UI will show button to open the popup view for editing the text
+    /// </summary>
+    public class EnableTextEditExpand : Attribute
+    {
+    }
 }
