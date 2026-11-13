@@ -21,7 +21,6 @@ namespace PluginBase
 
         public string Description { get; set; } = "";
         public string[] Options { get; set; } = [];
-        public bool Multiline { get; set; }
         public bool EnableFileDrop { get; set; }
         public bool EnableFolderPicker { get; set; }
         public bool MaskInput { get; set; }
